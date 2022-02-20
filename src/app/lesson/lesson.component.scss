@@ -1,0 +1,17 @@
+mat-card {
+  margin: 1em;
+}
+
+.exercise-info {
+  display: flex;
+  align-items: center;
+}
+
+.exercise-name {
+  flex: 1;
+}
+
+mat-progress-bar {
+  width: 7em;
+  margin: 0.5em;
+}

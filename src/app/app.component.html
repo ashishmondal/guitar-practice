@@ -1,0 +1,13 @@
+<mat-toolbar class="mat-elevation-z8" color="primary">
+  <mat-toolbar-row>
+    <div>Guitar Practice</div>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <app-metronome [tempo]="(tempo$ | async)!" [time]="(time$ | async)!"></app-metronome>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<content>
+  <app-lesson (exerciseSelect)="onExerciseSelect(lesson, $event)" *ngFor="let lesson of (session$ | async)!"
+    [lesson]="lesson" [selectedExercise]="(selectedExercise$ |async)!"></app-lesson>
+</content>

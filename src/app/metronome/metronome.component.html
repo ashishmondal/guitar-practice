@@ -1,0 +1,14 @@
+<div class="main">
+  <button mat-mini-fab (click)="onPlayPause()">
+    <mat-icon>{{play ? 'pause' : 'play_arrow'}}</mat-icon>
+  </button>
+  <div class="info">
+    <mat-icon>schedule</mat-icon> <span>{{tempo$ | async}}</span>
+  </div>
+  <div class="info">
+    <mat-icon>music_note</mat-icon><span>{{time$ | async}}</span>
+  </div>
+</div>
+<div class="viz-container">
+  <span class="led" [ngClass]= "getVizColor(i, viz)" *ngFor="let viz of (viz$ | async)!; let i=index"></span>
+</div>
