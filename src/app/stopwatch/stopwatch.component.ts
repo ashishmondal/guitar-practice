@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stopwatch',
   templateUrl: './stopwatch.component.html',
-  styleUrls: ['./stopwatch.component.scss']
+  styleUrls: ['./stopwatch.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StopwatchComponent implements OnInit {
   @Input()

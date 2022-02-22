@@ -14,9 +14,8 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-stopwatch [play]="panel.expanded"></app-stopwatch>
-        <iframe *ngIf="exercise.youtubeId && panel.expanded" width="100%" height="300"
-          [src]="youtubeUrl(exercise.youtubeId!)">
-        </iframe>
+        <app-youtube *ngIf="exercise.youtubeId && selectedExercise === exercise.id" [id]="exercise.youtubeId">
+        </app-youtube>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>

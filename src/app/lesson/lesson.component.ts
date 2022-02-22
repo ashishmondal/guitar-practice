@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
 import { Exercise, Lesson } from '../lesson.model';
 import { ExerciseList, TurnsCalculatorService } from '../turns-calculator.service';
@@ -50,16 +49,11 @@ export class LessonComponent implements OnInit {
 
   practiceItems: Practice[] = [];
 
-  constructor(private turnsCalculator: TurnsCalculatorService,
-    private sanitizer: DomSanitizer) {
+  constructor(private turnsCalculator: TurnsCalculatorService) {
 
   }
 
   ngOnInit(): void {
-  }
-
-  youtubeUrl(id: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${id}`)
   }
 
   onPracticeSelect(practice: Practice) {

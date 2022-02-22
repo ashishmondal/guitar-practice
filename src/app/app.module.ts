@@ -19,13 +19,15 @@ import { AppComponent } from './app.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { MetronomeComponent } from './metronome/metronome.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
+import { YoutubeComponent } from './youtube/youtube.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LessonComponent,
     MetronomeComponent,
-    StopwatchComponent
+    StopwatchComponent,
+    YoutubeComponent
   ],
   imports: [
     AppRoutingModule,
