@@ -4,8 +4,8 @@
   </mat-card-header>
   <mat-card-content>
     <mat-accordion>
-      <mat-expansion-panel hideToggle *ngFor="let exercise of practiceItems; trackBy: trackExercise" (click)="onPracticeSelect(exercise)"
-      [expanded]="selectedExercise === exercise.id">
+      <mat-expansion-panel #panel hideToggle *ngFor="let exercise of practiceItems; trackBy: trackExercise"
+        (click)="onPracticeSelect(exercise)" [expanded]="selectedExercise === exercise.id">
         <mat-expansion-panel-header>
           <mat-panel-title class="title">{{exercise.name}}</mat-panel-title>
           <mat-panel-description class="details">
@@ -13,7 +13,8 @@
             <span class="repeat" *ngIf="lesson?.repeat">{{exercise.turns}}</span>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <iframe *ngIf="exercise.youtubeId && selectedExercise === exercise.name" width="100%" height="300"
+        <app-stopwatch [play]="panel.expanded"></app-stopwatch>
+        <iframe *ngIf="exercise.youtubeId && panel.expanded" width="100%" height="300"
           [src]="youtubeUrl(exercise.youtubeId!)">
         </iframe>
       </mat-expansion-panel>

@@ -9,8 +9,9 @@
 </mat-toolbar>
 
 <content>
-  <app-lesson (exerciseSelect)="onExerciseSelect(lesson, $event)" *ngFor="let lesson of (lessons$ | async)!; trackBy: trackLesson"
-    [lesson]="lesson" [selectedExercise]="(selectedExercise$ |async)!"></app-lesson>
+  <app-lesson (exerciseSelect)="onExerciseSelect(lesson, $event)"
+    *ngFor="let lesson of (lessons$ | async)!; trackBy: trackLesson" [lesson]="lesson"
+    [selectedExercise]="(selectedExercise$ |async)!"></app-lesson>
 
   <mat-divider></mat-divider>
 

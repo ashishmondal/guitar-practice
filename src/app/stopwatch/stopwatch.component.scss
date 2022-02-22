@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.clock {
+  font-family: 'Digital 7', Courier, monospace;
+  font-size: 3em;
+  padding: 0.25rem 0.5rem;
+  border: 5px solid #E3EAEA;
+  border-radius: 0.25em;
+  display: block;
+  height: 1em;
+  width: 2.5em;
+  margin-top: 0.5rem;
+  background: #B3C2AF;
+  box-shadow: inset 0px 0px 10px rgba(67,70,64,0.5);
+}
+
+.text {
+  position: relative;
+  top: 0.25em;
+}
+
+.background {
+  position: absolute;
+  color: #A2B09E;
+}
+
+.numbers {
+  position: absolute;
+  color: #434640;
+  text-shadow: 1px 1px 2px rgb(67 70 64 / 70%);
+}

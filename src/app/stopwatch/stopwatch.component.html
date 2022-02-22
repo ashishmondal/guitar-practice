@@ -1,0 +1,9 @@
+<button mat-raised-button (click)="onPlayPause()">
+  <mat-icon>{{play ? 'pause' : 'play_arrow'}}</mat-icon>
+</button>
+<div class="clock">
+  <div class="text">
+    <span class="background">00:00</span>
+    <span class="numbers">{{clock$ | async}}</span>
+  </div>
+</div>

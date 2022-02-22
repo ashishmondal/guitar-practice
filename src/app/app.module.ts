@@ -18,12 +18,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { MetronomeComponent } from './metronome/metronome.component';
+import { StopwatchComponent } from './stopwatch/stopwatch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LessonComponent,
-    MetronomeComponent
+    MetronomeComponent,
+    StopwatchComponent
   ],
   imports: [
     AppRoutingModule,
