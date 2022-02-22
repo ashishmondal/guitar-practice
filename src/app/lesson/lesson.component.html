@@ -3,18 +3,20 @@
     <mat-card-title>{{lesson?.name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-selection-list [multiple]="false">
-      <mat-list-option *ngFor="let exercise of practiceItems" (click)="onPracticeSelect(exercise)"
-        [selected]="selectedExercise === exercise.name">
-        <div class="exercise-info">
-          <span class="exercise-name">{{exercise.name}}</span>
-          <mat-progress-bar mode="determinate" [value]="exercise.confidence * 10"></mat-progress-bar>
-          <span *ngIf="lesson?.repeat">{{exercise.turns}}</span>
-        </div>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let exercise of practiceItems; trackBy: trackExercise" (click)="onPracticeSelect(exercise)"
+      [expanded]="selectedExercise === exercise.id">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">{{exercise.name}}</mat-panel-title>
+          <mat-panel-description class="details">
+            <mat-progress-bar mode="determinate" [value]="exercise.confidence * 10"></mat-progress-bar>
+            <span class="repeat" *ngIf="lesson?.repeat">{{exercise.turns}}</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
         <iframe *ngIf="exercise.youtubeId && selectedExercise === exercise.name" width="100%" height="300"
           [src]="youtubeUrl(exercise.youtubeId!)">
         </iframe>
-      </mat-list-option>
-    </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-card-content>
 </mat-card>

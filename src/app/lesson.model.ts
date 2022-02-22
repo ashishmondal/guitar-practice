@@ -1,12 +1,13 @@
 export interface Lesson {
+  id: string;
   name: string;
   count: number;
   repeat: boolean;
   exercises: Exercise[];
-  items: { [key: string]: number };
 }
 
 export interface Exercise {
+  id: string;
   name: string;
   confidence: number;
   tempo: number;

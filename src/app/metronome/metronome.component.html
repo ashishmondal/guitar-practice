@@ -1,14 +1,23 @@
 <div class="main">
-  <button mat-mini-fab (click)="onPlayPause()">
+  <button mat-mini-fab (click)="onPlayPause()" [disabled]="!(tempo$ | async)">
     <mat-icon>{{play ? 'pause' : 'play_arrow'}}</mat-icon>
   </button>
-  <div class="info">
-    <mat-icon>schedule</mat-icon> <span>{{tempo$ | async}}</span>
+
+  <div class="info" *ngIf="time$ | async">
+    <button mat-mini-fab (click)="onTempoChange(-1)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <mat-icon class="icon">schedule</mat-icon>
+    <span>{{tempo$ | async}}</span>
+    <button mat-mini-fab (click)="onTempoChange(1)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
   <div class="info">
-    <mat-icon>music_note</mat-icon><span>{{time$ | async}}</span>
+    <mat-icon class="icon">music_note</mat-icon>
+    <span>{{time$ | async}}</span>
   </div>
 </div>
 <div class="viz-container">
-  <span class="led" [ngClass]= "getVizColor(i, viz)" *ngFor="let viz of (viz$ | async)!; let i=index"></span>
+  <span class="led" [ngClass]="getVizColor(i, viz)" *ngFor="let viz of (viz$ | async)!; let i=index"></span>
 </div>

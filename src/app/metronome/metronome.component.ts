@@ -1,17 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Howl } from 'howler';
-import { combineLatest, Subject, timer } from 'rxjs';
+import { combineLatest, Subject, timer, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-
-const times: { [key: string]: number } = {
-  '1/1': 1,
-  '2/4': 2,
-  '3/4': 3,
-  '4/4': 4,
-  '6/8': 6,
-  '1/8': 8,
-  '1/16': 16
-}
 
 @Component({
   selector: 'app-metronome',
@@ -21,7 +11,7 @@ const times: { [key: string]: number } = {
 })
 export class MetronomeComponent implements OnInit {
 
-  tempo$ = new Subject<number>();
+  tempo$ = new BehaviorSubject<number>(60);
   time$ = new Subject<string>();
   viz$ = new Subject<number[]>();
   play = false;
@@ -41,12 +31,19 @@ export class MetronomeComponent implements OnInit {
     this.time$.next(value);
   }
 
+  @Output() tempoChange = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit(): void {
     combineLatest(
-      this.tempo$.pipe(switchMap(tempo => timer(0, (1000 / tempo) * 60))),
-      this.time$.pipe(map(t => times[t]))
+      this.tempo$.pipe(
+        map(tempo => Math.max(20, Math.min(400, tempo))),
+        switchMap(tempo => timer(0, (1000 / tempo) * 60))
+      ),
+      this.time$.pipe(
+        map(t => Math.max(1, Math.min(16, +t.split('/')[0])))
+      )
     ).subscribe(([tick, time]) => {
 
       const viz: number[] = new Array(time).fill(0);
@@ -83,5 +80,11 @@ export class MetronomeComponent implements OnInit {
     }
 
     this.play = !this.play;
+  }
+
+  onTempoChange(delta: number) {
+    const newTempo = this.tempo$.getValue() + delta;
+    this.tempo$.next(newTempo);
+    this.tempoChange.emit(newTempo);
   }
 }

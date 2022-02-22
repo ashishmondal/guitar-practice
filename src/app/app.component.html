@@ -3,11 +3,22 @@
     <div>Guitar Practice</div>
   </mat-toolbar-row>
   <mat-toolbar-row>
-    <app-metronome [tempo]="(tempo$ | async)!" [time]="(time$ | async)!"></app-metronome>
+    <app-metronome [tempo]="(tempo$ | async)!" [time]="(time$ | async)!" (tempoChange)="onTempoChange($event)">
+    </app-metronome>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <content>
-  <app-lesson (exerciseSelect)="onExerciseSelect(lesson, $event)" *ngFor="let lesson of (session$ | async)!"
+  <app-lesson (exerciseSelect)="onExerciseSelect(lesson, $event)" *ngFor="let lesson of (lessons$ | async)!; trackBy: trackLesson"
     [lesson]="lesson" [selectedExercise]="(selectedExercise$ |async)!"></app-lesson>
+
+  <mat-divider></mat-divider>
+
+  <div class="url-form">
+    <mat-form-field appearance="fill" class="url">
+      <mat-label>Lesson URL</mat-label>
+      <input #url matInput placeholder="Ex. https://my.com/lessons.json" [value]="url$ | async">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onLoadFromUrl(url.value)">Load</button>
+  </div>
 </content>

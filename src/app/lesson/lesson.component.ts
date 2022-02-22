@@ -27,14 +27,14 @@ export class LessonComponent implements OnInit {
     if (value) {
       this._lesson = value;
 
-      const list = value.exercises
+      const list = value.exercises!
         .reduce((l, c) => ({ ...l, [c.name]: c.confidence }),
           {} as ExerciseList)
       const toPlay = this.turnsCalculator.getTurns(list, value.count, value.repeat);
 
       this.practiceItems = Object.keys(toPlay)
         .map(n => ({
-          ...value.exercises.find(e => e.name === n)!,
+          ...value.exercises!.find(e => e.name === n)!,
           turns: toPlay[n]
         }))
     }
@@ -44,6 +44,9 @@ export class LessonComponent implements OnInit {
     return this._lesson;
   }
 
+  trackExercise(_index: number, exercise: Exercise) {
+    return exercise.id;
+  }
 
   practiceItems: Practice[] = [];
 
@@ -60,6 +63,6 @@ export class LessonComponent implements OnInit {
   }
 
   onPracticeSelect(practice: Practice) {
-    this.exerciseSelect.emit(this.lesson?.exercises.find(e => e.name === practice.name));
+    this.exerciseSelect.emit(this.lesson?.exercises!.find(e => e.name === practice.name));
   }
 }

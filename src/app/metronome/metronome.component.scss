@@ -8,12 +8,10 @@
 }
 
 .info {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-
-  mat-icon {
-    margin-right: 0.5em;
-  }
+  grid-gap: 0.5em;
 }
 
 .viz-container {

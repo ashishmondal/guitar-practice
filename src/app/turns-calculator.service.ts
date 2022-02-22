@@ -42,9 +42,9 @@ export class TurnsCalculatorService {
         .itemName
     };
 
-    let result: ExerciseList = {};
-
-    let i =0
+    const mustDo = Object.keys(list).filter(n => list[n] === 0);
+    let result= mustDo.reduce((p, c) => ({ ...p, [c]: 1 }), {} as ExerciseList);
+    let i = mustDo.length;
 
     while (i < count) {
       const next = getPseudoRandom(items);
@@ -61,6 +61,5 @@ export class TurnsCalculatorService {
       .sort(([a,], [b,]) => order[a] - order[b])
       .reduce((r, [k, v]) => ({ ...r, [k]: v }), {} as ExerciseList)
   }
-
 }
 

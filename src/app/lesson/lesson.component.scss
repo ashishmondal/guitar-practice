@@ -1,5 +1,5 @@
 mat-card {
-  margin: 1em;
+  margin: 0.5em;
 }
 
 .exercise-info {
@@ -13,5 +13,22 @@ mat-card {
 
 mat-progress-bar {
   width: 7em;
-  margin: 0.5em;
+  margin: 0.5em 0;
+}
+
+.repeat {
+  margin-left: 0.5em;
+}
+
+iframe {
+  border-width: 0;
+}
+
+.title {
+  flex: 1;
+}
+
+.details {
+  flex: 0;
+  margin: 0;
 }
