@@ -13,9 +13,11 @@
             <span class="repeat" *ngIf="lesson?.repeat">{{exercise.turns}}</span>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-stopwatch [play]="panel.expanded"></app-stopwatch>
-        <app-youtube *ngIf="exercise.youtubeId && selectedExercise === exercise.id" [id]="exercise.youtubeId">
-        </app-youtube>
+        <div class="content">
+          <app-stopwatch [play]="panel.expanded"></app-stopwatch>
+          <app-youtube *ngIf="exercise.youtubeId && panel.expanded" [id]="exercise.youtubeId">
+          </app-youtube>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>

@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Exercise, Lesson } from './lesson.model';
 import { LessonService } from './lesson.service';
+import { TurnsCalculatorService } from './turns-calculator.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   _currentExercise?: Exercise;
 
-  constructor(private http: HttpClient, private lessonService: LessonService) {
+  constructor(private lessonService: LessonService, private turnsCalculator: TurnsCalculatorService) {
 
   }
 
@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
   }
 
   onLoadFromUrl(url: string) {
+    this.turnsCalculator.reSeed();
     this.lessonService.loadFromUrl(url);
   }
 }

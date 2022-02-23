@@ -8,24 +8,28 @@ export type ExerciseList = { [key: string]: number };
 })
 export class TurnsCalculatorService {
 
-  random = seedrandom(new Date().toDateString())
+  random = seedrandom(new Date().toDateString());
 
-  constructor() { }
+  constructor() {
+
+  }
+
+  reSeed() {
+    this.random = seedrandom(new Date().toDateString())
+  }
 
   getTurns(list: ExerciseList, count: number, repeat: boolean) {
     const max = 10;
     const total = Object.keys(list).reduce((p, c) => p + (max - list[c]), 0);
-    const items = Object.keys(list).reduce((p, c) => {
-      p[c] = (max - list[c]) / total;
-      return p;
-    }, {} as ExerciseList);
+    const items = Object.keys(list).reduce((p, c) => ({
+      ...p,
+      [c]: (max - list[c]) / total
+    }), {} as ExerciseList);
 
-    const order = Object.keys(list).reduce((p, c, i) => {
-      p[c] = i;
-      return p;
-    }, {} as ExerciseList);
-
-    console.log(order)
+    const order = Object.keys(list).reduce((p, c, i) => ({
+      ...p,
+      [c]: i
+    }), {} as ExerciseList);
 
     const getPseudoRandom = (items: ExerciseList) => {
       let totalWeight = 0,
@@ -43,7 +47,7 @@ export class TurnsCalculatorService {
     };
 
     const mustDo = Object.keys(list).filter(n => list[n] === 0);
-    let result= mustDo.reduce((p, c) => ({ ...p, [c]: 1 }), {} as ExerciseList);
+    let result = mustDo.reduce((p, c) => ({ ...p, [c]: 1 }), {} as ExerciseList);
     let i = mustDo.length;
 
     while (i < count) {

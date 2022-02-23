@@ -15,7 +15,7 @@ export class StopwatchComponent implements OnInit {
 
   clock$ = timer(0, 1000).pipe(
     map(_ => this.play ? this.counter++ : this.counter),
-    map(sec => `${padZero((sec / 60) | 0)}:${padZero(sec % 60)}`));
+    map(sec => `${padZero(((sec / 60) | 0) % 60)}:${padZero(sec % 60)}`));
   constructor() { }
 
   ngOnInit(): void {
