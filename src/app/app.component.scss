@@ -16,6 +16,11 @@ mat-toolbar {
   grid-template-columns: 1fr auto;
 }
 
+.app-name {
+  font-family: 'Sansita Swashed', cursive;
+}
+
+
 content {
   flex-grow: 1;
   overflow-y: auto;

@@ -8,7 +8,7 @@
     font-style: normal;
 }
 
-$custom-typography: mat.define-typography-config($font-family: '"Sansita Swashed", cursive;');
+$custom-typography: mat.define-typography-config($font-family: '"Fredoka", sans-serif;');
 @include mat.core($custom-typography);
 
 html, body { height: 100%; }
