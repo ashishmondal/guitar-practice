@@ -1,6 +1,9 @@
 <mat-toolbar class="mat-elevation-z8" color="primary">
   <mat-toolbar-row>
-    <div>Guitar Practice</div>
+    <div class="app-header">
+      <span>Guitar Practice</span>
+      <span>{{ date }}</span>
+    </div>
   </mat-toolbar-row>
   <mat-toolbar-row>
     <app-metronome [tempo]="(tempo$ | async)!" [time]="(time$ | async)!" (tempoChange)="onTempoChange($event)">
@@ -21,5 +24,14 @@
       <input #url matInput placeholder="Ex. https://my.com/lessons.json" [value]="url$ | async">
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="onLoadFromUrl(url.value)">Load</button>
+  </div>
+
+  <div class="url-form">
+    <button mat-raised-button (click)="onCopyToClipboard()">
+      <span>
+        Copy session to Clipboard
+      </span>
+      <mat-icon>content_copy</mat-icon>
+    </button>
   </div>
 </content>

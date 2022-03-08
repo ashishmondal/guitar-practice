@@ -10,6 +10,12 @@ mat-toolbar {
   display: inline-flex;
 }
 
+.app-header {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 content {
   flex-grow: 1;
   overflow-y: auto;

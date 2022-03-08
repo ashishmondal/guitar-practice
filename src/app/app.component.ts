@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Exercise, Lesson } from './lesson.model';
@@ -13,6 +14,8 @@ import { TurnsCalculatorService } from './turns-calculator.service';
 })
 export class AppComponent implements OnInit {
 
+  date = new Date().toLocaleDateString();
+
   tempo$ = new Subject<number>();
   time$ = new Subject<string>();
 
@@ -23,7 +26,11 @@ export class AppComponent implements OnInit {
 
   _currentExercise?: Exercise;
 
-  constructor(private lessonService: LessonService, private turnsCalculator: TurnsCalculatorService) {
+  constructor(
+    private lessonService: LessonService,
+    private turnsCalculator: TurnsCalculatorService,
+    private snackBar: MatSnackBar
+  ) {
 
   }
 
@@ -55,5 +62,11 @@ export class AppComponent implements OnInit {
   onLoadFromUrl(url: string) {
     this.turnsCalculator.reSeed();
     this.lessonService.loadFromUrl(url);
+  }
+
+  onCopyToClipboard() {
+    this.lessonService.copyToClipboard()
+      .then(_ => this.snackBar.open('Session copied successfully!', 'OK'))
+      .catch(_ => this.snackBar.open('Error copying session.', 'OK'))
   }
 }
