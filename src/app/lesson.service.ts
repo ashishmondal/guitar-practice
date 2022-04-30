@@ -50,7 +50,9 @@ export class LessonService {
   copyToClipboard() {
     const lessons = JSON.parse(window.localStorage.getItem('lessons') ?? '[]');
 
-    return navigator.clipboard.writeText(JSON.stringify(lessons, null, '  '));
+    const data = JSON.stringify(lessons, (key, value) => key === 'id' ? void 0: value, 2);
+
+    return navigator.clipboard.writeText(data);
   }
 
   private attachId(lessons: Lesson[]) {
