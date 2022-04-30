@@ -1,8 +1,8 @@
-name: CI
+name: Deploy to mondal.in
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
