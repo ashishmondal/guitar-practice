@@ -14,10 +14,12 @@ jobs:
       with:
         persist-credentials: false
 
-    - name: Install and Build
+    - name: Setup Nodejs
       uses: actions/setup-node@v3
       with:
         node-version: 14
+
+    - name: Install and Build
       run: |
           npm install
           npm run build
